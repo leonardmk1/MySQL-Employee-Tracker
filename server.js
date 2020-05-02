@@ -70,15 +70,15 @@ function startTracker() {
         case "View employees by manager":
           viewEmployeesByManager();
           break;
-        case "Remove departments":
-          removeDepartments();
-          break;
+        // case "Remove departments":
+        //   removeDepartments();
+        //   break;
         // case "Remove roles":
         //   removeRoles();
         //   break;
         // case "Remove employees":
         //   removeEmployees();
-        // break;
+        //   break;
         // case "View total department budget":
         //   viewTotalDepartmentBudget();
         //   break;
@@ -333,31 +333,31 @@ function viewEmployeesByManager() {
   });
 }
 
-function removeDepartments() {
-  let departments = [];
-  connection.query("SELECT * FROM department", (err, res) => {
-    if (err) throw err;
-    console.log(res);
-    res.forEach((element) => {
-      departments.push(element.id + ". " + element.name);
-    });
-    inquirer.prompt = [
-      {
-        type: "list",
-        choices: departments,
-        message: "Which department would you like to remove?",
-        name: "removeDept",
-      },
-    ].then(function (answer) {
-      connection.query(
-        "DELETE FROM department WHERE (?);",
-        [answer.removeDept[0]],
-        function (err, res) {
-          if (err) throw err;
-          console.table(res);
-          startTracker();
-        }
-      );
-    });
-  });
-}
+// function removeDepartments() {
+//   let departments = [];
+//   connection.query("SELECT * FROM department", (err, res) => {
+//     if (err) throw err;
+//     console.log(res);
+//     res.forEach((element) => {
+//       departments.push(element.id + ". " + element.name);
+//     });
+//     inquirer.prompt = [
+//       {
+//         type: "list",
+//         choices: departments,
+//         message: "Which department would you like to remove?",
+//         name: "removeDept",
+//       },
+//     ].then(function (answer) {
+//       connection.query(
+//         "DELETE FROM department WHERE (?);",
+//         [answer.removeDept[0]],
+//         function (err, res) {
+//           if (err) throw err;
+//           console.table(res);
+//           startTracker();
+//         }
+//       );
+//     });
+//   });
+// }
