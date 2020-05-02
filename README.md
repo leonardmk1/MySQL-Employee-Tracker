@@ -23,3 +23,5 @@ You will need to perform a variety of SQL JOINS to complete this assignment, and
 
 ### Links
 
+https://github.com/leonardmk1/MySQL-Employee-Tracker
+https://leonardmk1.github.io/MySQL-Employee-Tracker/
