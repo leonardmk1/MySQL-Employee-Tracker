@@ -1,6 +1,6 @@
 # MySQL-Employee-Tracker
 
- In this homework assignment, the challenge was to architect and build a solution for managing a company's employees using node, inquirer, and MySQL.  This application can do add departments, roles, employees
+ In this homework assignment, the challenge was to architect and build a solution for managing a company's employees using node, inquirer, and MySQL.  This application can add departments, roles, employees
  view departments, roles, employees, update employee roles, update employee managers, and view employees by manager.
 
  ### User Story
