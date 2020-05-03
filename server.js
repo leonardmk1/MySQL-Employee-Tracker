@@ -70,18 +70,15 @@ function startTracker() {
         case "View employees by manager":
           viewEmployeesByManager();
           break;
-        // case "Remove departments":
-        //   removeDepartments();
-        //   break;
-        // case "Remove roles":
-        //   removeRoles();
-        //   break;
-        // case "Remove employees":
-        //   removeEmployees();
-        //   break;
-        // case "View total department budget":
-        //   viewTotalDepartmentBudget();
-        //   break;
+        case "Remove departments":
+          removeDepartments();
+          break;
+        case "Remove roles":
+          removeRoles();
+          break;
+        case "Remove employees":
+          removeEmployees();
+          break;
         case "Exit":
           connection.end();
           break;
@@ -333,31 +330,89 @@ function viewEmployeesByManager() {
   });
 }
 
-// function removeDepartments() {
-//   let departments = [];
-//   connection.query("SELECT * FROM department", (err, res) => {
-//     if (err) throw err;
-//     console.log(res);
-//     res.forEach((element) => {
-//       departments.push(element.id + ". " + element.name);
-//     });
-//     inquirer.prompt = [
-//       {
-//         type: "list",
-//         choices: departments,
-//         message: "Which department would you like to remove?",
-//         name: "removeDept",
-//       },
-//     ].then(function (answer) {
-//       connection.query(
-//         "DELETE FROM department WHERE (?);",
-//         [answer.removeDept[0]],
-//         function (err, res) {
-//           if (err) throw err;
-//           console.table(res);
-//           startTracker();
-//         }
-//       );
-//     });
-//   });
-// }
+function removeDepartments() {
+  let departments = [];
+  connection.query("SELECT * FROM department", (err, res) => {
+    if (err) throw err;
+    console.log(res);
+    res.forEach((element) => {
+      departments.push(element.id + ". " + element.name);
+    });
+    inquirer.prompt([
+      {
+        type: "list",
+        choices: departments,
+        message: "Which department would you like to remove?",
+        name: "removeDept",
+      },
+    ]).then(function(answer) {
+      connection.query(
+        "DELETE FROM department WHERE (?);",
+        [answer.removeDept[0]],
+        function (err, res) {
+          if (err) throw err;
+          console.table(res);
+          startTracker();
+        }
+      );
+    });
+  });
+}
+
+function removeRoles() {
+  let roles = [];
+  connection.query("SELECT * FROM role", (err, res) => {
+    if (err) throw err;
+    console.log(res);
+    res.forEach((element) => {
+      roles.push(element.id + ". " + element.title);
+    });
+    inquirer.prompt([
+      {
+        type: "list",
+        choices: roles,
+        message: "Which role would you like to remove?",
+        name: "removeRole",
+      },
+    ]).then(function(answer) {
+      connection.query(
+        "DELETE FROM role WHERE (?);",
+        [answer.removeRole[0]],
+        function (err, res) {
+          if (err) throw err;
+          console.table(res);
+          startTracker();
+        }
+      );
+    });
+  });
+}
+
+function removeEmployees() {
+  let employees = [];
+  connection.query("SELECT * FROM employee", (err, res) => {
+    if (err) throw err;
+    console.log(res);
+    res.forEach((element) => {
+      employees.push(element.id + ". " + element.first_name + element.last_name);
+    });
+    inquirer.prompt([
+      {
+        type: "list",
+        choices: employees,
+        message: "Which employee would you like to remove?",
+        name: "removeEmployee",
+      },
+    ]).then(function(answer) {
+      connection.query(
+        "DELETE FROM employee WHERE (?);",
+        [answer.removeEmployee[0]],
+        function (err, res) {
+          if (err) throw err;
+          console.table(res);
+          startTracker();
+        }
+      );
+    });
+  });
+}
